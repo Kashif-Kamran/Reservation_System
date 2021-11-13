@@ -1,3 +1,4 @@
+package Code;
 
 public class Reservation
 {
@@ -5,7 +6,7 @@ public class Reservation
 	Seats busSeats;
 	Seats ecoSeats;
 
-	Reservation(int totalFstSeats, int totalBusSeats, int totalEcoSeats)
+	public Reservation(int totalFstSeats, int totalBusSeats, int totalEcoSeats)
 	{
 		try
 		{
@@ -19,7 +20,7 @@ public class Reservation
 
 	}
 
-	public boolean ReserveSeat(String SeatClass, int seatNo)
+	public boolean reserveSeat(String SeatClass, int seatNo)
 	{
 		boolean result = true;
 		if (SeatClass.equals("FST") == true)
@@ -106,20 +107,24 @@ public class Reservation
 		ecoSeats.showAllSeats();
 	}
 
-	public static void main(String[] args)
+	public void showReservedSeats()
 	{
-		Reservation res = new Reservation(5, 5, 5);
-		res.ReserveSeat("FST", 1);
-		res.ReserveSeat("FST", 2);
-		res.ReserveSeat("BUS", 1);
-		res.ReserveSeat("ECO", 1);
-		res.showAllSeats();
-		System.out.println("----------------------------");
-		res.unReserveSeat("FST", 1);
-		res.unReserveSeat("FST", 2);
-		res.unReserveSeat("BUS", 1);
-		res.unReserveSeat("ECO", 1);
-		res.showAllSeats();
+		System.out.println("[--- " + fstSeats.getSeatType() + " ---]");
+		fstSeats.showReservedSeats();
+		System.out.println("[--- " + busSeats.getSeatType() + " ---]");
+		busSeats.showReservedSeats();
+		System.out.println("[--- " + ecoSeats.getSeatType() + " ---]");
+		ecoSeats.showReservedSeats();
+	}
+
+	public void showAvailableSeats()
+	{
+		System.out.println("[--- " + fstSeats.getSeatType() + " ---]");
+		fstSeats.showAvaliableSeats();
+		System.out.println("[--- " + busSeats.getSeatType() + " ---]");
+		busSeats.showAvaliableSeats();
+		System.out.println("[--- " + ecoSeats.getSeatType() + " ---]");
+		ecoSeats.showAvaliableSeats();
 	}
 
 }

@@ -1,3 +1,5 @@
+package Code;
+
 import exception.ReservationException;
 
 public class Seats
@@ -22,6 +24,7 @@ public class Seats
 
 	public void reserveSeat(int seatNo) throws Exception
 	{
+		boolean ReturnState = false;
 		int actualSeat = seatNo - 1;
 		if (reservedSeats == totalSeats)
 		{
@@ -30,6 +33,7 @@ public class Seats
 		if (actualSeat >= totalSeats || actualSeat < 0)
 		{
 			throw new IndexOutOfBoundsException("--- Wrong Seat Number ---");
+
 		} else if (seatArray[actualSeat] == true)
 		{
 			throw new ReservationException("--- Seat Is Already Reserved ---");
@@ -44,7 +48,7 @@ public class Seats
 	{
 		for (int i = 0; i < totalSeats; i++)
 		{
-			if (i % 5 == 0)
+			if ((i + 1) % 5 == 0)
 			{
 				System.out.println();
 			}
@@ -59,15 +63,59 @@ public class Seats
 		System.out.println();
 	}
 
+	public void showAvaliableSeats()
+	{
+		if (reservedSeats == totalSeats)
+		{
+			System.out.println("-- No Seats Are Available --");
+		}
+		int j = 1;
+		for (int i = 0; i < totalSeats; i++)
+		{
+			if (j % 5 == 0)
+			{
+				System.out.println();
+			}
+			if (seatArray[i] == false)
+			{
+				System.out.print((i + 1) + "|AV  ");
+				j++;
+			}
+		}
+		System.out.println();
+	}
+
+	public void showReservedSeats()
+	{
+		if (reservedSeats == 0)
+		{
+			System.out.println("-- No Reserved Seats --");
+		}
+		int j = 1;
+		for (int i = 0; i < totalSeats; i++)
+		{
+			if (j % 5 == 0)
+			{
+				System.out.println();
+			}
+			if (seatArray[i] == true)
+			{
+				System.out.print((i + 1) + "|RV  ");
+				j++;
+			}
+		}
+		System.out.println();
+	}
+
 	public void unreserveSeat(int seatNo) throws Exception
 	{
 		int actualSeat = seatNo - 1;
-		if (reservedSeats == 0)
-		{
-			throw new ReservationException("--- All Seats Are Free ---");
-		} else if (actualSeat < 0 || actualSeat >= totalSeats)
+		if (actualSeat < 0 || actualSeat >= totalSeats)
 		{
 			throw new IndexOutOfBoundsException("--- Wrong Seat Number ---");
+		} else if (reservedSeats == 0)
+		{
+			throw new ReservationException("--- All Seats Are Free ---");
 		} else if (seatArray[actualSeat] == false)
 		{
 			throw new ReservationException("--- Seat is Already Free ---");
