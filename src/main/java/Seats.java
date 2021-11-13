@@ -27,7 +27,7 @@ public class Seats
 		{
 			throw new ReservationException("--- All Seats Are Reserved ---");
 		}
-		if (actualSeat > totalSeats || actualSeat < 0)
+		if (actualSeat >= totalSeats || actualSeat < 0)
 		{
 			throw new IndexOutOfBoundsException("--- Wrong Seat Number ---");
 		} else if (seatArray[actualSeat] == true)
@@ -56,6 +56,7 @@ public class Seats
 				System.out.print((i + 1) + "|AV  ");
 			}
 		}
+		System.out.println();
 	}
 
 	public void unreserveSeat(int seatNo) throws Exception
@@ -64,7 +65,7 @@ public class Seats
 		if (reservedSeats == 0)
 		{
 			throw new ReservationException("--- All Seats Are Free ---");
-		} else if (actualSeat < 1 || actualSeat >= totalSeats)
+		} else if (actualSeat < 0 || actualSeat >= totalSeats)
 		{
 			throw new IndexOutOfBoundsException("--- Wrong Seat Number ---");
 		} else if (seatArray[actualSeat] == false)
@@ -73,6 +74,7 @@ public class Seats
 		} else
 		{
 			seatArray[actualSeat] = false;
+			reservedSeats--;
 		}
 	}
 
@@ -86,4 +88,8 @@ public class Seats
 		return reservedSeats;
 	}
 
+	public String getSeatType()
+	{
+		return type;
+	}
 }
