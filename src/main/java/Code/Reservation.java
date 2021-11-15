@@ -20,10 +20,10 @@ public class Reservation
 
 	}
 
-	public boolean reserveSeat(String SeatClass, int seatNo)
+	public boolean reserveSeat(String SeatClassType, int seatNo)
 	{
 		boolean result = true;
-		if (SeatClass.equals("FST") == true)
+		if (SeatClassType.equals("FST") == true)
 		{
 			try
 			{
@@ -33,7 +33,7 @@ public class Reservation
 				System.out.println(exc);
 				result = false;
 			}
-		} else if (SeatClass.equals("BUS") == true)
+		} else if (SeatClassType.equals("BUS") == true)
 		{
 			try
 			{
@@ -43,7 +43,7 @@ public class Reservation
 				System.out.println(exc);
 				result = false;
 			}
-		} else if (SeatClass.equals("ECO") == true)
+		} else if (SeatClassType.equals("ECO") == true)
 		{
 			try
 			{
@@ -53,15 +53,19 @@ public class Reservation
 				System.out.println(exc);
 				result = false;
 			}
+		} else
+		{
+			// If
+			result = false;
 		}
 		return result;
 	}
 
-	public boolean unReserveSeat(String SeatClass, int seatNo)
+	public boolean unReserveSeat(String SeatClassType, int seatNo)
 	{
 		{
 			boolean result = true;
-			if (SeatClass.equals("FST") == true)
+			if (SeatClassType.equals("FST") == true)
 			{
 				try
 				{
@@ -71,7 +75,7 @@ public class Reservation
 					System.out.println(exc);
 					result = false;
 				}
-			} else if (SeatClass.equals("BUS") == true)
+			} else if (SeatClassType.equals("BUS") == true)
 			{
 				try
 				{
@@ -81,7 +85,7 @@ public class Reservation
 					System.out.println(exc);
 					result = false;
 				}
-			} else if (SeatClass.equals("ECO") == true)
+			} else if (SeatClassType.equals("ECO") == true)
 			{
 				try
 				{
@@ -91,6 +95,9 @@ public class Reservation
 					System.out.println(exc);
 					result = false;
 				}
+			} else
+			{
+				result = true;
 			}
 			return result;
 		}
@@ -127,4 +134,20 @@ public class Reservation
 		ecoSeats.showAvaliableSeats();
 	}
 
+	public int getTotalSeatsOf(String SeatClassType)
+	{
+		if (SeatClassType.equals("FST") == true)
+		{
+			return fstSeats.getTotalSeats();
+		} else if (SeatClassType.equals("BUS") == true)
+		{
+			return fstSeats.getTotalSeats();
+		} else if (SeatClassType.equals("ECO") == true)
+		{
+			return fstSeats.getTotalSeats();
+		} else
+		{
+			return -1;
+		}
+	}
 }
