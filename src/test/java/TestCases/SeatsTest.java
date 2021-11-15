@@ -16,7 +16,6 @@ public class SeatsTest
 	@Before
 	public void BeforeTest()
 	{
-
 		seat = new Seats("FST", 30);
 	}
 
